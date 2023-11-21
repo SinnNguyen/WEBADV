@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f202ba22a1f04c7c956fd052ffff34f5" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="WebshopModel.Account" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.AccountAddress" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Brand" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Category" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Contact" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Delivery" Width="1.5" PointX="3.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Discount" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Feedback" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Oder_Detail" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Order" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Payment" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Product" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.Role" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebshopModel.sysdiagram" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="WebshopModel.FK_Account_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_AccountAddress_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Feedback_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Order_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Product_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Order_Delivery" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Product_Discount" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Feedback_Feedback" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Feedback_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Oder_Detail_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Oder_Detail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="WebshopModel.FK_Order_Payment" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

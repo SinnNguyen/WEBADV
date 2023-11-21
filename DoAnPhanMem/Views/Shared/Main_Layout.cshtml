@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="Laptop giá rẻ, Laptop chính hãng, KaomeSHop kaome, laptop, laptop siêu rẻ" />
+    <meta name="description" content="Cung cấp laptop và phụ kiện chính hãng">
+    <meta property="og:type" content="article" />
+    <meta property="og:image:height" content="500px" />
+    <meta property="og:image" content="@ViewBag.Image" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- ::::::::::::::Favicon icon::::::::::::::-->
+    <link rel="shortcut icon" href="~/Content/Images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="~/Content/UserCSS/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="~/Content/UserCSS/plugins/plugins.min.css" />
+    <link href="~/Content/UserCSS/style.css" rel="stylesheet" />
+    <!-- Google Fonts Roboto -->
+    <!-- Font Awesome CDN -->
+    <script src="https://use.fontawesome.com/576ffb49bd.js"></script>
+</head>
+<body>
+    @Html.Partial("Header_Layout")
+    <!-- Start Offcanvas Mobile Menu Section -->
+    <div id="offcanvas-about"
+         class="offcanvas offcanvas-rightside offcanvas-mobile-about-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close">
+                <i class="ion-android-close"></i>
+            </button>
+        </div>
+        <!-- End Offcanvas Header -->
+        <!-- Start Offcanvas Mobile Menu Wrapper -->
+    </div>
+    <!-- ...:::: End Offcanvas Mobile Menu Section:::... -->
+    @*@Html.Action("PreviewCart", "Cart")*@
+    <!-- Start Offcanvas Mobile Menu Section -->
+    <div id="offcanvas-wishlish"
+         class="offcanvas offcanvas-rightside offcanvas-add-cart-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close">
+                <i class="ion-android-close"></i>
+            </button>
+        </div>
+        <!-- ENd Offcanvas Header -->
+        <!-- Start Offcanvas Mobile Menu Wrapper -->
+        <div class="offcanvas-wishlist-wrapper">
+            <h4 class="offcanvas-title">Wishlist</h4>
+            <ul class="offcanvas-wishlist">
+                <li class="offcanvas-wishlist-item-single">
+                    <div class="offcanvas-wishlist-item-block">
+                        <a href="#" class="offcanvas-wishlist-item-image-link">
+                            <img src="~/Content/Images/product/default/home-1/default-1.jpg"
+                                 alt=""
+                                 class="offcanvas-wishlist-image" />
+                        </a>
+                        <div class="offcanvas-wishlist-item-content">
+                            <a href="#" class="offcanvas-wishlist-item-link">Car Wheel</a>
+                            <div class="offcanvas-wishlist-item-details">
+                                <span class="offcanvas-wishlist-item-details-quantity">
+                                    1 x
+                                </span>
+                                <span class="offcanvas-wishlist-item-details-price">$49.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offcanvas-wishlist-item-delete text-right">
+                        <a href="#" class="offcanvas-wishlist-item-delete">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="offcanvas-wishlist-item-single">
+                    <div class="offcanvas-wishlist-item-block">
+                        <a href="#" class="offcanvas-wishlist-item-image-link">
+                            <img src="~/Content/Images/product/default/home-2/default-1.jpg"
+                                 alt=""
+                                 class="offcanvas-wishlist-image" />
+                        </a>
+                        <div class="offcanvas-wishlist-item-content">
+                            <a href="#" class="offcanvas-wishlist-item-link">Car Vails</a>
+                            <div class="offcanvas-wishlist-item-details">
+                                <span class="offcanvas-wishlist-item-details-quantity">
+                                    3 x
+                                </span>
+                                <span class="offcanvas-wishlist-item-details-price">$500.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offcanvas-wishlist-item-delete text-right">
+                        <a href="#" class="offcanvas-wishlist-item-delete">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="offcanvas-wishlist-item-single">
+                    <div class="offcanvas-wishlist-item-block">
+                        <a href="#" class="offcanvas-wishlist-item-image-link">
+                            <img src="~/Content/Images/product/default/home-3/default-1.jpg"
+                                 alt=""
+                                 class="offcanvas-wishlist-image" />
+                        </a>
+                        <div class="offcanvas-wishlist-item-content">
+                            <a href="#" class="offcanvas-wishlist-item-link">Shock Absorber</a>
+                            <div class="offcanvas-wishlist-item-details">
+                                <span class="offcanvas-wishlist-item-details-quantity">
+                                    1 x
+                                </span>
+                                <span class="offcanvas-wishlist-item-details-price">$350.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offcanvas-wishlist-item-delete text-right">
+                        <a href="#" class="offcanvas-wishlist-item-delete">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="offcanvas-wishlist-action-button">
+                <li>
+                    <a href="#" class="btn btn-block btn-golden">View wishlist</a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Offcanvas Mobile Menu Wrapper -->
+    </div>
+    <!-- End Offcanvas Mobile Menu Section -->
+    <!-- Start Offcanvas Search Bar Section -->
+    <div id="search" class="search-modal">
+        <button type="button" class="close">×</button>
+        <form action="@Url.Action("SearchResult", "Product")">
+            <input autocomplete="off" name="s" type="search" placeholder="Nhập thông tin tại đây" />
+            <button type="submit" class="btn btn-lg btn-golden">Tìm Kiếm</button>
+        </form>
+    </div>
+    <!-- End Offcanvas Search Bar Section -->
+    <!-- Offcanvas Overlay -->
+    <div class="offcanvas-overlay"></div>
+    @RenderBody()
+    @Html.Partial("_MessageAlert")
+    @Html.Partial("Footer_Layout")
+    <!-- material-scrolltop button -->
+    <button class="material-scrolltop" type="button"></button>
+    <!-- Start Modal Add cart -->
+    <div class="modal fade"
+         id="modalAddcart"
+         tabindex="-1"
+         role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button"
+                                        class="close modal-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="modal-add-cart-product-img">
+                                            <img class="img-fluid"
+                                                 src="~/Content/Images/product/default/home-1/default-1.jpg"
+                                                 alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="modal-add-cart-info">
+                                            <i class="fa fa-check-square"></i>Đã Thêm Vào Giỏ Hàng
+                                            Thành Công !
+                                        </div>
+                                        <div class="modal-add-cart-product-cart-buttons">
+                                            <a href="cart.html">Xem Giỏ Hàng</a>
+                                            <a href="checkout.html">Thanh Toán</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 modal-border">
+                                <ul class="modal-add-cart-product-shipping-info">
+                                    <li>
+                                        <strong>
+                                            <i class="icon-shopping-cart"></i> There Are 5 Items In
+                                            Your Cart.
+                                        </strong>
+                                    </li>
+                                    <li><strong>Tổng Giá: </strong> <span>$187.00</span></li>
+                                    <li class="modal-continue-button">
+                                        <a href="#" data-bs-dismiss="modal">Tiếp Tục Mua Sắm </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Add cart -->
+    <!-- ::::::::::::::All JS Files here :::::::::::::: -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/UserJS/vendor/vendor.min.js"></script>
+    <script src="~/Scripts/UserJS/plugins/plugins.min.js"></script>
+    <script src="~/Scripts/UserJS/cookie.js"></script>
+    <script src="~/Scripts/UserJS/common.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Latest compiled JavaScript -->
+    <!-- Main JS -->
+    <script src="~/Scripts/UserJS/main.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

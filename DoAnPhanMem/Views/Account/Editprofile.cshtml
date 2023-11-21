@@ -1,0 +1,114 @@
+﻿@model DoAnPhanMem.Models.Account
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
+
+}
+@*@using DoAnPhanMem.Common.Helpers*@
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+@if (Model != null)
+{
+    <!-- ...:::: Start Breadcrumb Section:::... -->
+    <div class="breadcrumb-section breadcrumb-bg-color--black">
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                            <nav aria-label="breadcrumb">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                                    <li>
+                                        <a href="#">Tài khoản</a>
+                                    </li>
+                                    <li class="active" aria-current="page">
+                                        Thông tin tài khoản
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ...:::: End Breadcrumb Section:::... -->
+    <!-- ...:::: Start Account Dashboard Section:::... -->
+    <div class="account-dashboard">
+        <div class="container">
+            <div class="row">
+                @Html.Partial("Dashboard")
+                <div class="col-sm-12 col-md-7 col-lg-7">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard_content" data-aos="fade-up" data-aos-delay="0">
+                        <div id="account-details">
+                            <h3>Chi Tiết Tài Khoản </h3>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="login">
+                                    <div class="login_form_container">
+                                        <div class="account_login_form">
+                                            @using (Html.BeginForm("Editprofile", "Account", FormMethod.Post))
+                                            {
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                <div class="default-form-box mb-20">
+                                                    <label>Email</label>
+                                                    <input type="text" class="cursor-disable" name="email" readonly value="@Model.email">
+                                                </div>
+                                                <div class="default-form-box mb-20">
+                                                    <label>Họ tên<span class="text-danger">*</span></label>
+                                                    @*<input type="text" name="acc_name" id="Name" value="@Model.acc_name">*@
+                                                    @Html.EditorFor(model => model.acc_name, new { htmlAttributes = new { type = "text" } })
+                                                    @Html.ValidationMessageFor(model => model.acc_name, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="default-form-box mb-20">
+                                                    <label>Số điện thoại<span class="text-danger">*</span></label>
+                                                    @*<input type="number" id="Phone" name="phone" value="@Model.phone.TrimEnd()">*@
+                                                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="default-form-box mb-20">
+                                                    <label>Địa chỉ<span class="text-danger">*</span></label>
+                                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { type = "text" } })
+                                                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="save_button mt-3">
+                                                    <button class="btn btn-md btn-black-default-hover" id="save-form"
+                                                            type="submit">
+                                                        Lưu
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2 col-lg-2 d-flex align-items-center" data-aos="fade-up" data-aos-delay="50">
+                    <div class="form-input">
+                        <div class="preview">
+                            <img id="file-ip-1-preview" src="@Model.avatar">
+                        </div>
+                        <label for="file-ip-1">Thay đổi</label>
+                        <input type="file" id="file-ip-1" accept=".jpg,.png,.jpeg" onchange="uploadFile(event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ...:::: End Account Dashboard Section:::... -->
+}
+@section scripts{
+    <script src="~/Scripts/UserJS/accounts.js"></script>
+    <script src="~/Scripts/UserJS/jquery.validate.min.js"></script>
+    <script src="~/Scripts/UserJS/jquery.validate.unobtrusive.js"></script>
+}

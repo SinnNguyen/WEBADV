@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebshopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="acc_id" />
+    </Key>
+    <Property Name="acc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="acc_password" Type="varchar(max)" />
+    <Property Name="acc_status" Type="char" MaxLength="1" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="acc_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="avatar" Type="text" />
+    <Property Name="role_id" Type="int" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="AccountAddress">
+    <Key>
+      <PropertyRef Name="acc_add_id" />
+    </Key>
+    <Property Name="acc_add_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="acc_id" Type="int" Nullable="false" />
+    <Property Name="acc_address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="acc_phone" Type="varchar" MaxLength="10" />
+    <Property Name="acc_username" Type="nvarchar" MaxLength="20" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brand_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="cate_id" />
+    </Key>
+    <Property Name="cate_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cate_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="delivery_id" />
+    </Key>
+    <Property Name="delivery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="delivery_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="discount_id" />
+    </Key>
+    <Property Name="discount_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="discount_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="discount_start" Type="datetime" Nullable="false" />
+    <Property Name="discount_end" Type="datetime" Nullable="false" />
+    <Property Name="discount_price" Type="float" Nullable="false" />
+    <Property Name="discount_code" Type="nvarchar" MaxLength="10" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="feedback_id" />
+    </Key>
+    <Property Name="feedback_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="account_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" />
+    <Property Name="content" Type="nvarchar(max)" />
+    <Property Name="replyfor" Type="int" />
+    <Property Name="create_at" Type="datetime" />
+    <Property Name="rate_star" Type="int" />
+  </EntityType>
+  <EntityType Name="Oder_Detail">
+    <Key>
+      <PropertyRef Name="pro_id" />
+      <PropertyRef Name="cate_id" />
+      <PropertyRef Name="discount_id" />
+      <PropertyRef Name="oder_id" />
+    </Key>
+    <Property Name="pro_id" Type="int" Nullable="false" />
+    <Property Name="cate_id" Type="int" Nullable="false" />
+    <Property Name="discount_id" Type="int" Nullable="false" />
+    <Property Name="oder_id" Type="int" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="payment_id" Type="int" Nullable="false" />
+    <Property Name="delivery_id" Type="int" Nullable="false" />
+    <Property Name="oder_date" Type="datetime" Nullable="false" />
+    <Property Name="total" Type="float" Nullable="false" />
+    <Property Name="acc_id" Type="int" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" />
+    <Property Name="order_note" Type="nvarchar" MaxLength="200" />
+    <Property Name="oder_address" Type="nvarchar" MaxLength="200" />
+    <Property Name="note" Type="nvarchar" MaxLength="500" />
+    <Property Name="oderUsername" Type="nvarchar" MaxLength="50" />
+    <Property Name="oderPhone" Type="int" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="payment_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="pro_id" />
+    </Key>
+    <Property Name="pro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pro_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="cate_id" Type="int" Nullable="false" />
+    <Property Name="brand_id" Type="int" Nullable="false" />
+    <Property Name="discount_id" Type="int" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="buyturn" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="status_" Type="char" MaxLength="1" />
+    <Property Name="specification" Type="nvarchar(max)" />
+    <Property Name="pro_img" Type="nvarchar(max)" />
+    <Property Name="pro_description" Type="nvarchar(max)" />
+    <Property Name="update_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProductImg">
+    <Key>
+      <PropertyRef Name="product_img_id" />
+    </Key>
+    <Property Name="product_img_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Account_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountAddress_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="AccountAddress" Type="Self.AccountAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="acc_id" />
+      </Principal>
+      <Dependent Role="AccountAddress">
+        <PropertyRef Name="acc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="acc_id" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="account_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_Feedback">
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="0..1" />
+    <End Role="Feedback1" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feedback">
+        <PropertyRef Name="feedback_id" />
+      </Principal>
+      <Dependent Role="Feedback1">
+        <PropertyRef Name="replyfor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="pro_id" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oder_Detail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Oder_Detail" Type="Self.Oder_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="Oder_Detail">
+        <PropertyRef Name="oder_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oder_Detail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Oder_Detail" Type="Self.Oder_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="pro_id" />
+      </Principal>
+      <Dependent Role="Oder_Detail">
+        <PropertyRef Name="pro_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="acc_id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="acc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Delivery">
+    <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Delivery">
+        <PropertyRef Name="delivery_id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="delivery_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Payment">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="payment_id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="payment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Brand">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="brand_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="cate_id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="cate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Discount">
+    <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discount">
+        <PropertyRef Name="discount_id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="discount_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImg_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductImg" Type="Self.ProductImg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="pro_id" />
+      </Principal>
+      <Dependent Role="ProductImg">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebshopModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountAddress" EntityType="Self.AccountAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Oder_Detail" EntityType="Self.Oder_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductImg" EntityType="Self.ProductImg" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountAddress_Account" Association="Self.FK_AccountAddress_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountAddress" EntitySet="AccountAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_Account" Association="Self.FK_Feedback_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Feedback" EntitySet="Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_Feedback" Association="Self.FK_Feedback_Feedback">
+      <End Role="Feedback" EntitySet="Feedback" />
+      <End Role="Feedback1" EntitySet="Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_Product" Association="Self.FK_Feedback_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Feedback" EntitySet="Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oder_Detail_Order" Association="Self.FK_Oder_Detail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Oder_Detail" EntitySet="Oder_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oder_Detail_Product" Association="Self.FK_Oder_Detail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Oder_Detail" EntitySet="Oder_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Delivery" Association="Self.FK_Order_Delivery">
+      <End Role="Delivery" EntitySet="Delivery" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Payment" Association="Self.FK_Order_Payment">
+      <End Role="Payment" EntitySet="Payment" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Discount" Association="Self.FK_Product_Discount">
+      <End Role="Discount" EntitySet="Discount" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImg_Product" Association="Self.FK_ProductImg_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductImg" EntitySet="ProductImg" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,226 @@
+﻿@*@using DoAnPhanMem.Common.Helpers*@
+@model DoAnPhanMem.Models.Account
+@{
+    ViewBag.Title = "Thanh toán đơn hàng";
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
+    List<int> quans = ViewBag.Quans as List<int>;
+    var culture = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+
+    var listProduct = (List<DoAnPhanMem.Models.Product>)ViewBag.ListProduct;
+    var listdeli = (List<DoAnPhanMem.Models.Delivery>)ViewBag.ListDeli;
+
+    var discountPrice = Convert.ToDouble(ViewBag.Discount);
+    var total = Convert.ToDouble(ViewBag.Total);    // Giá sau khi áp dụng mã giảm giá, được tính ở controller
+    var price = total + discountPrice;  // giá gốc trước khi giảm
+    var shippingFee = 30000;
+    total += shippingFee;
+
+    TempData["Total"] = total;
+    var taiKhoan = HttpContext.Current.Session["TaiKhoan"] as DoAnPhanMem.Models.Account;
+
+}
+
+<style>
+    /* .nice-select {
+        display: none !important;
+    }*/
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+@section scripts{
+    <script src="~/Scripts/UserJS/address-manager.js"></script>
+    <script src="~/Scripts/UserJS/accounts.js"></script>
+    <script src="~/Scripts/UserJS/jquery.validate.min.js"></script>
+    <script src="~/Scripts/UserJS/jquery.validate.unobtrusive.js"></script>
+    <script>
+    $(document).ready(function () {
+        var totalValue = parseFloat('@total');
+        var deliveryPrices = {
+            @foreach (var deli in listdeli)
+            {
+                <text>"@deli.delivery_id": @deli.price,</text>
+            }
+        };
+
+        // Lắng nghe sự kiện thay đổi phương thức vận chuyển
+        $('#deliveryMethod').on('change', function () {
+            // Lấy giá trị đã chọn (delivery_id) và chuyển đổi sang kiểu số
+            var selectedDeliveryId = parseInt($(this).val());
+
+            // Lấy giá vận chuyển từ danh sách giá trị
+            var selectedDeliveryPrice = deliveryPrices[selectedDeliveryId];
+
+            // Loại bỏ dấu phân cách hàng nghìn và hiển thị phí vận chuyển dưới dạng 30.000
+            var formattedDeliveryPrice = selectedDeliveryPrice.toLocaleString("vi-VN", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            // Tính lại tổng giá dựa trên giá vận chuyển đã chọn
+            var newTotal = totalValue + selectedDeliveryPrice - 30000;
+
+            // Cập nhật giá hiển thị của phí vận chuyển
+            $('#shippingFee').text(formattedDeliveryPrice + '₫');
+
+            // Cập nhật tổng tiền
+            $('#total').text(newTotal.toLocaleString("vi-VN", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '₫');
+
+        });
+
+    });
+    </script>
+
+
+}
+@if (taiKhoan != null)
+{
+    <!-- ...:::: Start Breadcrumb Section:::... -->
+    <div class="breadcrumb-section breadcrumb-bg-color--black">
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                            <nav aria-label="breadcrumb">
+                                <ul>
+                                    <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                                    <li><a href="@Url.Action("ViewCart", "Cart")">Giỏ hàng</a></li>
+                                    <li class="active" aria-current="page">
+                                        Thanh toán
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ...:::: End Breadcrumb Section:::... -->
+    <!-- ...:::: Start Checkout Section:::... -->
+    <div class="checkout-section">
+        <div class="container">
+            <!-- Start User Details Checkout Form -->
+            <div class="checkout_form" data-aos="fade-up" data-aos-delay="0">
+                <form method="post" action="@Url.Action("SaveOrder", "Cart")">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h3>Thông tin nhận hàng</h3>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label style="font-weight:500">Họ tên người nhận <span class="text-danger">*</span></label>
+                                    <div class="default-form-box">
+                                        @Html.EditorFor(model => model.acc_name, new { htmlAttributes = new { type = "text" } })
+                                        @Html.ValidationMessageFor(model => model.acc_name, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label style="font-weight:500">Số điện thoại <span class="text-danger">*</span></label>
+                                    <div class="default-form-box">
+                                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { type = "number" } })
+                                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label style="font-weight:500">Địa chỉ cụ thể <span class="text-danger">*</span></label>
+                                    <div class="default-form-box">
+                                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { type = "text" } })
+                                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="order-notes">
+                                        <label for="OrderNote" style="font-weight:500">Ghi chú đơn hàng</label>
+                                        <textarea name="OrderNote" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: những lưu ý đặc biệt khi giao hàng."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label style="font-weight:500">Phương thức vận chuyển</label>
+                                        <select id="deliveryMethod" name="delivery_id" class="form-control">
+                                            @foreach (var deli in listdeli)
+                                            {
+                                                <option value="@deli.delivery_id">@deli.delivery_name - @deli.price.ToString("#,##0") VNĐ</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <h3>Đơn đặt hàng của bạn</h3>
+                            <div class="order_table table-responsive" style="overflow-x: hidden; border-left: 0.5px solid #0000001c; border-right: 0.5px solid #0000001c; border-top: 0.5px solid #0000001c;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Sản Phẩm</th>
+                                            <th>Tổng Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < listProduct.Count(); i++)
+                                        {
+                                            var item = listProduct.ElementAt(i);
+                                            var quan = quans[i];
+                                            var price2 = item.price;
+                                            int maxquantity = item.quantity;
+                                            if (item.Discount.discount_start < DateTime.Now && item.Discount.discount_end > DateTime.Now)
+                                            {
+                                                price2 = item.price - item.Discount.discount_price;
+                                            }
+                                            <tr>
+                                                <td style="max-width:500px!important;"> <a target="_blank" href="~/@SlugGenerator.SlugGenerator.GenerateSlug(item.pro_name)-@item.pro_id">@item.pro_name <strong style="color: #3674ab;"> × @quan</strong></a></td>
+                                                <td>
+                                                    @{
+                                                        double total3 = 0;
+                                                        total3 = price2 * quan;
+                                                    }
+                                                    <span>
+                                                        @total3.ToString("#,0₫", culture.NumberFormat)
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot style="font-weight:500">
+                                        <tr>
+                                            <th>Tạm tính</th>
+                                            <td>@price.ToString("#,0₫", culture.NumberFormat)</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Giảm giá</th>
+                                            <td>@discountPrice.ToString("#,0₫", culture.NumberFormat)</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phí vận chuyển</th>
+                                            <td><span id="shippingFee">@shippingFee.ToString("#,0₫", culture.NumberFormat)</span></td>
+                                        </tr>
+                                        <tr class="order_total">
+                                            <th>Thành tiền</th>
+                                            <td><span id="total">@total.ToString("#,0₫", culture.NumberFormat)</span></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="payment_method">
+                                <div class="order_button d-flex justify-content-end">
+                                    <button class="btn btn-md btn-black-default-hover" id="save-order" type="submit">
+                                        Đặt hàng ngay
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- Start User Details Checkout Form -->
+        </div>
+    </div>
+    <!-- ...:::: End Checkout Section:::... -->
+}
